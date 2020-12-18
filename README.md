@@ -1,7 +1,7 @@
 # M07-UF1-Practica_02-Editor_de_text
 
-##Creació d'un editor de textos
-##Treballar amb controls de menú
+###Creació d'un editor de textos
+###Treballar amb controls de menú
 
 - Els elements principals per constriui menús amb JavaFX són:
 
