@@ -25,6 +25,8 @@
 Més informació sobre aquests i altres controls relacionats amb els menús a la documentació oficial.
 
 
+
+
 ### Exercici: editor de textos
 
 Es tracta de que creeu un editor de textos bàsic:
@@ -58,13 +60,14 @@ Es tracta de que creeu un editor de textos bàsic:
 - Creeu un menú contextual amb les opcions del menú Editar. Useu ContextMenu.
 
 
+
 ### Ampliació
 Afegeix a l'editor de text que hem fet a classe les següents funcionalitats:
 
-    Obrir un fitxer i carregar-ne el seu contingut.
-    Guardar el text editat a un fitxer.
-    El nom del fitxer que s'està editant ha d'aparèixer al títol de la finestra de l'editor.
+- Obrir un fitxer i carregar-ne el seu contingut.
+- Guardar el text editat a un fitxer. 
+- El nom del fitxer que s'està editant ha d'aparèixer al títol de la finestra de l'editor.
 
-Useu la classe FileChooser per a crear els diàlegs dels fitxers.
+Useu la classe **FileChooser** per a crear els diàlegs dels fitxers.
 
 Per accedir, llegir i escriure als fitxers recordeu les classes treballades a 1er (File, FileReader, FileWriter).
