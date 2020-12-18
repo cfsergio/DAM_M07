@@ -1,13 +1,13 @@
 # M07-UF1-Practica_02-Editor_de_text
 
-###Creació d'un editor de textos
-###Treballar amb controls de menú
+### Creació d'un editor de textos
+### Treballar amb controls de menú
 
 - Els elements principals per constriui menús amb JavaFX són:
 
-    MenuBar: barra de menú
-    Menu: un menú dins la barra de manús
-    MenuItem: un element d'un menú
+    - **MenuBar**: barra de menú
+    - **Menu**: un menú dins la barra de manús
+    - **MenuItem**: un element d'un menú
 
 - En arrossegar i deixar anar una barra de menú del panell Library fins al panell de contingut, conté per defecte elements de 3 menús que s'etiqueten File, Edit i Help. Per defecte, cada un d'aquests menús també conté un item del menú. Evidentment tot això ho podem modificar segons ens convingui.
 
@@ -25,7 +25,7 @@
 Més informació sobre aquests i altres controls relacionats amb els menús a la documentació oficial.
 
 
-##Exercici: editor de textos
+### Exercici: editor de textos
 
 Es tracta de que creeu un editor de textos bàsic:
 
@@ -33,13 +33,13 @@ Es tracta de que creeu un editor de textos bàsic:
 
 - Creareu els següents menús i elements de menú:
 
-Fitxer: Sortir
+**Fitxer**: Sortir
 
-Editar: Copiar, Tallar, Enganxar, Desfer
+**Editar**: Copiar, Tallar, Enganxar, Desfer
 
-Opcions: Font, Tamany
+**Opcions**: Font, Tamany
 
-Ajuda: Sobre l'Editor
+**Ajuda**: Sobre l'Editor
 
 - Per sortir de l'aplicació podeu cridar a Platform.exit();
 
@@ -58,7 +58,7 @@ Ajuda: Sobre l'Editor
 - Creeu un menú contextual amb les opcions del menú Editar. Useu ContextMenu.
 
 
-##Ampliació
+### Ampliació
 Afegeix a l'editor de text que hem fet a classe les següents funcionalitats:
 
     Obrir un fitxer i carregar-ne el seu contingut.
