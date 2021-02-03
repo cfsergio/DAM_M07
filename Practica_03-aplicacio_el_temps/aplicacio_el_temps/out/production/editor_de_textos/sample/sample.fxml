@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" prefHeight="0.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <AnchorPane fx:id="ap" prefHeight="384.0" prefWidth="601.0" GridPane.rowIndex="1">
+         <children>
+            <TextArea fx:id="ta" layoutX="23.0" layoutY="37.0" prefHeight="295.0" prefWidth="510.0">
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#copiarText" text="Copiar" />
+                        <MenuItem mnemonicParsing="false" onAction="#enganxarText" text="Enganxar" />
+                        <MenuItem mnemonicParsing="false" onAction="#tallarText" text="Tallar" />
+                        <MenuItem mnemonicParsing="false" onAction="#desferText" text="Desfer" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TextArea>
+            <ToolBar layoutX="23.0" layoutY="332.0" prefHeight="35.0" prefWidth="510.0">
+              <items>
+                <Button fx:id="btt_tallar" mnemonicParsing="false" onAction="#tallarText" prefHeight="2.0" prefWidth="52.0" text="Tallar">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btt_copiar" mnemonicParsing="false" onAction="#copiarText" text="Copiar">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btt_enganxar" mnemonicParsing="false" onAction="#enganxarText" text="Enganxar">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+              </items>
+            </ToolBar>
+            <MenuBar layoutX="23.0" layoutY="2.0" prefHeight="35.0" prefWidth="510.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Fitxer">
+                  <items>
+                        <MenuItem fx:id="mi_obrir" mnemonicParsing="false" onAction="#obrirFitxer" text="Obrir" />
+                        <MenuItem fx:id="mi_guardar" mnemonicParsing="false" onAction="#guardarFitxer" text="Guardar" />
+                    <MenuItem fx:id="btt_sortir" mnemonicParsing="false" onAction="#sortir" text="Sortir" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" onShowing="#seleccionarEditar" text="Editar">
+                  <items>
+                    <MenuItem fx:id="mi_copiar" mnemonicParsing="false" onAction="#copiarText" text="Copiar" />
+                        <MenuItem fx:id="mi_tallar" mnemonicParsing="false" onAction="#tallarText" text="Tallar" />
+                        <MenuItem fx:id="mi_enganxar" mnemonicParsing="false" onAction="#enganxarText" text="Enganxar" />
+                        <MenuItem fx:id="mi_desfer" mnemonicParsing="false" onAction="#desferText" text="Desfer" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Opcions">
+                  <items>
+                        <Menu mnemonicParsing="false" text="Font">
+                          <items>
+                              <RadioMenuItem fx:id="rmi_font_comicsans" mnemonicParsing="false" onAction="#fontComicSans" text="Comic Sans MS" />
+                              <RadioMenuItem fx:id="rmi_impact" mnemonicParsing="false" onAction="#fontImpact" text="Impact" />
+                              <RadioMenuItem fx:id="rmi_tnr" mnemonicParsing="false" onAction="#fontTimesNewRoman" text="Times New Roman" />
+                          </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Tamany">
+                           <items>
+                              <RadioMenuItem fx:id="rmi_tamany_petit" mnemonicParsing="false" onAction="#tamanyPetit" text="Tamany petit" />
+                              <RadioMenuItem fx:id="rmi_tamany_mitja" mnemonicParsing="false" onAction="#tamanyMitja" text="Tamany mitjà" />
+                              <RadioMenuItem fx:id="rmi_tamany_gran" mnemonicParsing="false" onAction="#tamanyGran" text="Tamany gran" />
+                           </items>
+                        </Menu>
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Ajuda">
+                    <items>
+                      <MenuItem fx:id="btt_ajuda_editor" mnemonicParsing="false" onAction="#ajuda" text="Sobre l'Editor" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+   </rowConstraints>
+</GridPane>
