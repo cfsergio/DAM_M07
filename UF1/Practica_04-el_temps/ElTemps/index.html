@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="eltemps.css">
+</head>
+
+<body>
+<div id="eltemps">
+    <section class="container notification content is-large" v-if="ciutatActual!=null">
+        {{ ciutatActual.name }}
+        <br>
+        {{ ciutatActual.weather[0].description }}
+        <br>
+        <img v-bind:src="getIcon(ciutatActual.weather[0].icon)" />
+    </section>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="./main.js"></script>
+</body>
+
+</html>
