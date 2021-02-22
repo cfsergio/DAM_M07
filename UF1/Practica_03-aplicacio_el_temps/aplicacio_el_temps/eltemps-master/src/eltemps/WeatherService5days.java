@@ -1,9 +1,12 @@
 package eltemps;
 
+import eltemps.domain.Weather;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
@@ -16,65 +19,77 @@ public class WeatherService5days {
     private Integer temperature;
     private String description;
 
-    public WeatherService5days(String city) {
-        this.city = city;
-    }
+    public Weather getCurrentWeather(String city) {
+        String crida = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&lang=ca&appid=e45272a1eff49e21a99d62aa7f11153d";
 
-    private String readAll(Reader rd) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) {
-            sb.append((char) cp);
-        }
-        return sb.toString();
-    }
-
-    public JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
-        try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
-        } finally {
-            is.close();
-        }
-    }
-
-    public void getWeather(){
-        int i = 0;
-        JSONObject json;
-        JSONObject json_specific; //get specific data in jsonobject variable
-        SimpleDateFormat df2 = new SimpleDateFormat("EEEE", Locale.ENGLISH); //Entire word/day as output
-        Calendar c = Calendar.getInstance();
+        String forecastJSON = null;
 
         try {
-            json = readJsonFromUrl("api.openweathermap.org/data/2.5/forecast?q="+city+"&units=metric&lang=eng&appid=e45272a1eff49e21a99d62aa7f11153d");
+            forecastJSON = owmCall(crida);
         } catch (IOException e) {
-            return;
+            //e.printStackTrace();
+            return null;
         }
-        json_specific = json.getJSONObject("list");
-        json_specific = json.getJSONObject("main");
-        this.temperature = json_specific.getInt("temp");
-        c.add(Calendar.DATE, i);
-        this.day = df2.format(c.getTime());
-        json_specific = json.getJSONArray("weather").getJSONObject(0);
-        this.description = json_specific.get("description").toString();
+
+
+        JSONObject joWeather = (JSONObject) new JSONTokener(forecastJSON).nextValue();
+
+        JSONObject joList = joWeather.getJSONObject("list");
+
+        JSONObject joMain = joWeather.getJSONObject("main");
+        JSONObject joDesc = joWeather.getJSONArray("weather").getJSONObject(0);
+        JSONObject joWind = joWeather.getJSONObject("wind");
+        JSONObject joClouds = joWeather.getJSONObject("clouds");
+
+        Weather current = new Weather();
+
+        current.setTemp(joMain.getDouble("temp"));
+        current.setFeelsLike(joMain.getDouble("feels_like"));
+        current.setMin(joMain.getDouble("temp_min"));
+        current.setMax(joMain.getDouble("temp_max"));
+        current.setPressure(joMain.getDouble("pressure"));
+        current.setHumidity(joMain.getInt("humidity"));
+        current.setDescription(joDesc.getString("description"));
+        current.setIcon(joDesc.getString("icon"));
+        current.setSpeed(joWind.getDouble("speed"));
+        current.setClouds(joClouds.getInt("all"));
+
+        if (joWeather.has("rain")) {
+            JSONObject joRain = joWeather.getJSONObject("rain");
+            current.setRain(joRain.getDouble("1h"));
+        }
+        if (joWeather.has("snow")) {
+            JSONObject joSnow = joWeather.getJSONObject("snow");
+            current.setSnow(joSnow.getDouble("1h"));
+        }
+
+        return current;
     }
 
-    public String getCity() {
-        return city;
+    private String owmCall(String url_crida) throws IOException {
+        URL url = new URL(url_crida);
+        String response = null;
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try {
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            response = readStream(in);
+        } finally {
+            urlConnection.disconnect();
+        }
+        return response;
     }
 
-    public String getDay() {
-        return day;
-    }
-
-    public Integer getTemperature() {
-        return temperature;
-    }
-
-    public String getDescription() {
-        return description;
+    private static String readStream(InputStream in) throws IOException {
+        InputStreamReader is = new InputStreamReader(in);
+        BufferedReader rd = new BufferedReader(is);
+        String line;
+        StringBuilder response = new StringBuilder();
+        while ((line = rd.readLine()) != null) {
+            response.append(line);
+            response.append('\r');
+        }
+        rd.close();
+        return response.toString();
     }
 }
+

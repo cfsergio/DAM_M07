@@ -6,16 +6,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class InicialController {
+public class Window2 {
+    @FXML
+    private BorderPane lbWinSec;
 
-    private WeatherService weatherService = new WeatherService();
+    private WeatherService5days weatherService = new WeatherService5days();
     private ListView<String> ciutats = new ListView<>();
     private Image image;
 
@@ -31,10 +35,20 @@ public class InicialController {
     @FXML
     private Button previsio;
 
+    @FXML
+    private Label etiqueta;
+
+    @FXML
+    private Button bt1, bt2;
+
+    @FXML
+    private Parent root;
 
     private short numWin;
 
-    public void initialize() {
+    public void initialize(){
+        numWin = 1;
+
         lvCiutats.getItems().addAll("Barcelona", "San Cristóbal de La Laguna", "Jaén", "Madrid", "Sant Sebastià");
         lvCiutats.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     Weather current = weatherService.getCurrentWeather(newValue.toString());
@@ -49,6 +63,8 @@ public class InicialController {
 
                         String url = "http://openweathermap.org/img/wn/" + current.getIcon() + "@2x.png";
                         setImage(url);
+
+
                     }
                 }
         );
@@ -71,5 +87,6 @@ public class InicialController {
             System.out.println(e);
         }
     }
-}
 
+
+}
